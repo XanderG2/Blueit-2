@@ -46,15 +46,15 @@ const Login: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>
+      <main className={styles.main}>
+        <h1 className={styles.title}>
           Login
         </h1>
-        <form method="POST" onSubmit={onSubmit}>
-        <input type="text" name="username" onChange={clearError}/>
-        <input type="password" name="password" onChange={clearError}/>
-        <button type="submit">Log in</button>
-          {error?<p className={styles.error}>{error.message}</p>: null}
+        <form method="POST" onSubmit={onSubmit} className={styles.grid}>
+          <input type="text" name="username" onChange={clearError} className={styles.card}/>
+          <input type="password" name="password" onChange={clearError} className={styles.card}/>
+          <button type="submit" className={styles.card}>Log in</button>
+            {error?<p className={styles.error}>{error.message}</p>: null}
       </form>
       </main>
       </div>
