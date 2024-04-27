@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import Cookies from 'cookies'
+import {Database} from '../../../lib/database'
 
 
-const Database = require("@replit/database")
 
 const db = new Database()
 
