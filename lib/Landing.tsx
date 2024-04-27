@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { getCookieValue } from "../lib/cookies";
 import { useState, useEffect, useCallback } from "react";
@@ -17,14 +18,14 @@ const Landing: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to Blueit 2!</h1>
         <div className={styles.grid}>
-          <a href="/login" className={styles.card}>
+          <Link href="/login" className={styles.card}>
             <h2>Login &rarr;</h2>
             <p>Login to Blueit.</p>
-          </a>
-          <a href="/register" className={styles.card}>
+          </Link>
+          <Link href="/register" className={styles.card}>
             <h2>Register &rarr;</h2>
             <p>Register to Blueit.</p>
-          </a>
+          </Link>
         </div>
       </main>
     </div>

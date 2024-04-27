@@ -18,7 +18,7 @@ const P: NextPage = (props) => {
 
   useEffect(() => {
     if (typeof id === "string") fetchPost(id);
-  }, [id]);
+  }, [fetchPost, id]);
 
   return <div>{post ? <Post post={post} /> : null}</div>;
 };

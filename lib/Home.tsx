@@ -22,7 +22,7 @@ const Home: NextPage<{ username: string }> = ({ username }) => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   const handleLogout = () => {
     removeCookie("username");

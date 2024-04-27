@@ -13,7 +13,7 @@ const LogoutPage: React.FC = () => {
     const redirectTimer = setTimeout(redirectToHome, delay);
 
     return () => clearTimeout(redirectTimer);
-  }, []);
+  }, [router]);
 
   return (
     <div>
