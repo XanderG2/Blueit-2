@@ -1,7 +1,12 @@
 import styles from "../styles/Post.module.css";
 import { useRouter } from "next/navigation";
+import { PostData } from "./interfaces";
 
-export default function Post({ post: { id, username, content } }) {
+export default function Post({
+  post: { id, username, content },
+}: {
+  post: PostData;
+}) {
   const { push } = useRouter();
   const go = () => {
     push(`/p/${id}`);
