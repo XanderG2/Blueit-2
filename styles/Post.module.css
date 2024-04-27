@@ -4,13 +4,23 @@
 }
 
 .content {
-  margin-left: 1rem;  
+  margin-left: 1rem;
+}
+.shortpost .content {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.post{
+.shortpost {
+  max-width: 300px;
+}
+.post {
+  width: fit-content;
+}
+
+.post,
+.shortpost {
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -19,12 +29,14 @@
   border: 1px solid #808080;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
 }
 
 .post:hover,
 .post:focus,
-.post:active {
+.post:active,
+.shortpost:hover,
+.shortpost:focus,
+.shortpost:active {
   color: #0070f3;
   border-color: #0070f3;
 }

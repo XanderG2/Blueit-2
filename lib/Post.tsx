@@ -3,16 +3,18 @@ import { useRouter } from "next/navigation";
 import { PostData } from "./interfaces";
 
 export default function Post({
+  short,
   post: { id, username, content },
 }: {
   post: PostData;
+  short?: boolean;
 }) {
   const { push } = useRouter();
   const go = () => {
     push(`/p/${id}`);
   };
   return (
-    <div className={styles.post} onClick={go}>
+    <div className={short ? styles.shortpost : styles.post} onClick={go}>
       <div className={styles.username}>
         {username}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className={styles.right}>

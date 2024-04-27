@@ -84,7 +84,7 @@ const Home: NextPage<{ username: string }> = ({ username }) => {
         </form>
         <div id="posts">
           {reversed.map((post, i) => (
-            <Post key={i} post={post} />
+            <Post key={i} post={post} short />
           ))}
         </div>
       </main>
