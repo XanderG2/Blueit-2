@@ -1,15 +1,11 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {getCookieValue} from '../lib/cookies'
-import { useState, useEffect, useCallback } from 'react';
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { getCookieValue } from "../lib/cookies";
+import { useState, useEffect, useCallback } from "react";
 
 const Landing: NextPage = () => {
- 
-  
-
-  
   return (
     <div className={styles.container}>
       <Head>
@@ -19,29 +15,20 @@ const Landing: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to Blueit 2!
-        </h1>
+        <h1 className={styles.title}>Welcome to Blueit 2!</h1>
         <div className={styles.grid}>
-          <a 
-            href="/login" 
-            className={styles.card}
-          >
+          <a href="/login" className={styles.card}>
             <h2>Login &rarr;</h2>
             <p>Login to Blueit.</p>
-          </a> 
-          <a 
-            href="/register" 
-            className={styles.card}
-          >
+          </a>
+          <a href="/register" className={styles.card}>
             <h2>Register &rarr;</h2>
             <p>Register to Blueit.</p>
           </a>
         </div>
       </main>
     </div>
-  )
-  
-}
+  );
+};
 
-export default Landing
+export default Landing;

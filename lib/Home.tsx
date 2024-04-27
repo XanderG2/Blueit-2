@@ -1,14 +1,14 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import {getCookieValue} from '../lib/cookies';
-import Post from './Post';
-import { useState, useEffect, useCallback, FormEventHandler } from 'react';
-import {removeCookie} from './cookieutils';
-import {useRouter} from 'next/router';
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { getCookieValue } from "../lib/cookies";
+import Post from "./Post";
+import { useState, useEffect, useCallback, FormEventHandler } from "react";
+import { removeCookie } from "./cookieutils";
+import { useRouter } from "next/router";
 
-const Home: NextPage<{username:string}> = ({username}) => {
+const Home: NextPage<{ username: string }> = ({ username }) => {
   const router = useRouter();
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState("");
@@ -17,7 +17,7 @@ const Home: NextPage<{username:string}> = ({username}) => {
     const response = await fetch("/api/posts", {
       method: "GET",
     });
-    setPosts( await response.json());
+    setPosts(await response.json());
   }, []);
 
   useEffect(() => {
@@ -25,13 +25,13 @@ const Home: NextPage<{username:string}> = ({username}) => {
   }, []);
 
   const handleLogout = () => {
-    removeCookie('username');
-    router.push('/logout');
+    removeCookie("username");
+    router.push("/logout");
   };
-  
-  const onSubmit:FormEventHandler<HTMLFormElement> = async (event)=>{
+
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-  
+
     const formData = new FormData(event.target as HTMLFormElement); // Get the form data
     const searchparams = new URLSearchParams(formData as any);
     const username = getCookieValue("username");
@@ -46,10 +46,10 @@ const Home: NextPage<{username:string}> = ({username}) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-      const body = await response.json()
-      fetchPosts()
+      const body = await response.json();
+      fetchPosts();
       if (response.ok) {
-        setMessage("")
+        setMessage("");
         console.log("Post created successfully!");
       } else {
         console.error("Failed to create post.");
@@ -58,8 +58,8 @@ const Home: NextPage<{username:string}> = ({username}) => {
       console.error("Error:", error);
     }
   };
-    
-const reversed = [...posts].reverse()
+
+  const reversed = [...posts].reverse();
   return (
     <div>
       <Head>
@@ -68,22 +68,28 @@ const reversed = [...posts].reverse()
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main >
-        <h1 >
-          Welcome back, {username}!
-        </h1>
+      <main>
+        <h1>Welcome back, {username}!</h1>
         <button onClick={handleLogout}>Logout</button>
-<form id="postForm" onSubmit={onSubmit}>
-        <input type="text" name="content" value={message} onChange={e=> {setMessage(e.target.value)}} />
-        <button type="submit">Post</button>
-      </form>
-      <div id="posts">
-        {reversed.map((post, i) => <Post key={i} post={post} />)}
-      </div>
-</main>
+        <form id="postForm" onSubmit={onSubmit}>
+          <input
+            type="text"
+            name="content"
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+          />
+          <button type="submit">Post</button>
+        </form>
+        <div id="posts">
+          {reversed.map((post, i) => (
+            <Post key={i} post={post} />
+          ))}
+        </div>
+      </main>
     </div>
-  )  
-  
-}
+  );
+};
 
-export default Home
+export default Home;

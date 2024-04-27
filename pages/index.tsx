@@ -1,36 +1,25 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {getCookieValue} from '../lib/cookies'
-import Post from '../lib/Post'
-import { useState, useEffect, useCallback } from 'react';
-import Landing from '../lib/Landing'
-import Home from '../lib/Home'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { getCookieValue } from "../lib/cookies";
+import Post from "../lib/Post";
+import { useState, useEffect, useCallback } from "react";
+import Landing from "../lib/Landing";
+import Home from "../lib/Home";
 
 const Index: NextPage = () => {
-  const [username, setUsername] = useState<string|null>(null);
+  const [username, setUsername] = useState<string | null>(null);
 
- 
   useEffect(() => {
     setUsername(getCookieValue("username") ?? null);
   }, []);
 
-    
-
   if (username) {
-
-  return (
-    <Home username={username}/>
-  )  
+    return <Home username={username} />;
   } else {
-  
-
-  
-  return (
-    <Landing/>
-  )
+    return <Landing />;
   }
-}
+};
 
-export default Index
+export default Index;

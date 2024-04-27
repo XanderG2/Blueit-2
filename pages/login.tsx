@@ -1,16 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {FormEventHandler, useState} from 'react'
-import {useRouter} from 'next/navigation'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { FormEventHandler, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Login: NextPage = () => {
-  const {push} = useRouter()
-  const [error, setError] = useState<Error|null>(null)
-  const onSubmit:FormEventHandler<HTMLFormElement> = async (event)=>{
+  const { push } = useRouter();
+  const [error, setError] = useState<Error | null>(null);
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-  
+
     const formData = new FormData(event.target as HTMLFormElement); // Get the form data
     const searchparams = new URLSearchParams(formData as any);
     try {
@@ -21,24 +21,24 @@ const Login: NextPage = () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-          const body = await response.json();
+      const body = await response.json();
 
       if (response.ok) {
-        
         console.log("Post created successfully!", body.username);
-        push("/")
-        
+        push("/");
       } else {
         throw new Error(body.error);
         console.error("Failed to create post.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setError(error as Error)
+      setError(error as Error);
     }
-  }
-  const clearError = ()=> {setError(null)}
-  
+  };
+  const clearError = () => {
+    setError(null);
+  };
+
   return (
     <div>
       <Head>
@@ -47,17 +47,28 @@ const Login: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Login
-        </h1>
+        <h1 className={styles.title}>Login</h1>
         <form method="POST" onSubmit={onSubmit} className={styles.grid}>
-          <input type="text" name="username" onChange={clearError} className={styles.card}/>
-          <input type="password" name="password" onChange={clearError} className={styles.card}/>
-          <button type="submit" className={styles.card}>Log in</button>
-            {error?<p className={styles.error}>{error.message}</p>: null}
-      </form>
+          <input
+            type="text"
+            name="username"
+            onChange={clearError}
+            className={styles.card}
+          />
+          <input
+            type="password"
+            name="password"
+            onChange={clearError}
+            className={styles.card}
+          />
+          <button type="submit" className={styles.card}>
+            Log in
+          </button>
+          {error ? <p className={styles.error}>{error.message}</p> : null}
+        </form>
       </main>
-      </div>
-    )};
+    </div>
+  );
+};
 
-export default Login
+export default Login;

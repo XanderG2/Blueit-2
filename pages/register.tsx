@@ -1,16 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {FormEventHandler, useState} from 'react'
-import {useRouter} from 'next/navigation'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { FormEventHandler, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Register: NextPage = () => {
-  const {push} = useRouter()
-  const [error, setError] = useState<Error | null>(null)
-  const onSubmit: FormEventHandler<HTMLFormElement> = async (event)=>{
+  const { push } = useRouter();
+  const [error, setError] = useState<Error | null>(null);
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-  
+
     const formData = new FormData(event.target as HTMLFormElement); // Get the form data
     const searchparams = new URLSearchParams(formData as any);
     try {
@@ -21,10 +21,10 @@ const Register: NextPage = () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-  
+
       if (response.ok) {
         console.log("Post created successfully!");
-        push("/")
+        push("/");
       } else {
         const body = await response.json();
         throw new Error(body.error);
@@ -32,10 +32,10 @@ const Register: NextPage = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setError(error as Error)
+      setError(error as Error);
     }
-  }
-  
+  };
+
   return (
     <div>
       <Head>
@@ -44,17 +44,16 @@ const Register: NextPage = () => {
       </Head>
 
       <main>
-        <h1>
-          Register
-        </h1>
+        <h1>Register</h1>
         <form method="POST" onSubmit={onSubmit}>
-        <input type="text" name="username"/>
-        <input type="password" name="password"/>
-        <button type="submit">Register</button>
-          {error?<p className={styles.error}>{error.message}</p>: null}
-      </form>
+          <input type="text" name="username" />
+          <input type="password" name="password" />
+          <button type="submit">Register</button>
+          {error ? <p className={styles.error}>{error.message}</p> : null}
+        </form>
       </main>
-      </div>
-    )};
+    </div>
+  );
+};
 
-export default Register
+export default Register;

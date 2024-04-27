@@ -1,11 +1,11 @@
 export class Database {
-    async get(key:string) {
-        return undefined;
-    }
-    async set(key:string,value:string) {
-        return;
-    }
-    async list(prefix:string) {
-        return [];
-    }
+  async get(key: string): Promise<any> {
+    return undefined;
+  }
+  async set(key: string, value: any) {
+    return;
+  }
+  async list(prefix: string) {
+    return [];
+  }
 }

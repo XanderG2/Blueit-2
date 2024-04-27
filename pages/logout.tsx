@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const LogoutPage: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
     const redirectToHome = () => {
-      router.push('/');
+      router.push("/");
     };
 
     const delay = 500;
