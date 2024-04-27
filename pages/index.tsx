@@ -9,11 +9,11 @@ import Landing from '../lib/Landing'
 import Home from '../lib/Home'
 
 const Index: NextPage = () => {
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState<string|null>(null);
 
  
   useEffect(() => {
-    setUsername(getCookieValue("username"));
+    setUsername(getCookieValue("username") ?? null);
   }, []);
 
     

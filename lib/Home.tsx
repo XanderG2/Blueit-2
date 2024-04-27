@@ -4,11 +4,11 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import {getCookieValue} from '../lib/cookies';
 import Post from './Post';
-import { useState, useEffect, useCallback } from 'react';
-import {removeCookie} from './cookieutils.tsx';
+import { useState, useEffect, useCallback, FormEventHandler } from 'react';
+import {removeCookie} from './cookieutils';
 import {useRouter} from 'next/router';
 
-const Home: NextPage = ({username}) => {
+const Home: NextPage<{username:string}> = ({username}) => {
   const router = useRouter();
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState("");
@@ -29,12 +29,15 @@ const Home: NextPage = ({username}) => {
     router.push('/logout');
   };
   
-  const onSubmit = async (event)=>{
+  const onSubmit:FormEventHandler<HTMLFormElement> = async (event)=>{
     event.preventDefault(); // Prevent the default form submission
   
-    const formData = new FormData(event.target); // Get the form data
-    const searchparams = new URLSearchParams(formData);
-    searchparams.append("username", getCookieValue("username"));
+    const formData = new FormData(event.target as HTMLFormElement); // Get the form data
+    const searchparams = new URLSearchParams(formData as any);
+    const username = getCookieValue("username");
+    if (username) {
+      searchparams.append("username", username);
+    }
     try {
       const response = await fetch("/api/posts", {
         method: "POST",

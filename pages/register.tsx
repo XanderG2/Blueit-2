@@ -2,17 +2,17 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import {useState} from 'react'
+import {FormEventHandler, useState} from 'react'
 import {useRouter} from 'next/navigation'
 
 const Register: NextPage = () => {
   const {push} = useRouter()
-  const [error, setError] = useState(null)
-  const onSubmit = async (event)=>{
+  const [error, setError] = useState<Error | null>(null)
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (event)=>{
     event.preventDefault(); // Prevent the default form submission
   
-    const formData = new FormData(event.target); // Get the form data
-    const searchparams = new URLSearchParams(formData);
+    const formData = new FormData(event.target as HTMLFormElement); // Get the form data
+    const searchparams = new URLSearchParams(formData as any);
     try {
       const response = await fetch("/api/register", {
         method: "POST",
@@ -32,7 +32,7 @@ const Register: NextPage = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setError(error)
+      setError(error as Error)
     }
   }
   

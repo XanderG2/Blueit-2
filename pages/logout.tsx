@@ -6,7 +6,7 @@ const LogoutPage: React.FC = () => {
 
   useEffect(() => {
     const redirectToHome = () => {
-      router.push('https://blueit-2.xangil.repl.co/');
+      router.push('/');
     };
 
     const delay = 500;
