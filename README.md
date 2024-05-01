@@ -16,5 +16,6 @@ ssh xander@xvps.thegillams.co.uk
 
 ```
 (~/next)
-pm2 restart npm
+pm2 stop npm
+pm2 start npm -- start
 ```
