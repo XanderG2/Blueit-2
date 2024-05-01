@@ -11,22 +11,22 @@ import Reply from "../../lib/Reply";
 const P: NextPage = (props) => {
   const router = useRouter();
   console.log("That", props);
-  const [post, setPost] = useState<PostData | null>(null);
-  const [replies, setReplies] = useState([]);
-  const [message, setMessage] = useState("");
+  const [reply, setReply] = useState<ReplyData | null>(null);
+  //const [replies, setReplies] = useState([]);
+  //const [message, setMessage] = useState("");
   const id = router.query.id;
   const fetchPost = useCallback(async function (id: string) {
-    const response = await fetch(`/api/post/${id}`, {
+    const response = await fetch(`/api/reply/${id}`, {
       method: "GET",
     });
-    setPost(await response.json());
+    setReply(await response.json());
   }, []);
 
   useEffect(() => {
     if (typeof id === "string") fetchPost(id);
   }, [fetchPost, id]);
 
-  const getReplies = useCallback(async () => {
+  /*const getReplies = useCallback(async () => {
     try {
       const response = await fetch("/api/replies", {
         method: "GET",
@@ -86,26 +86,10 @@ const P: NextPage = (props) => {
       console.error("Error:", error);
     }
   };
-  const reversed = [...replies].reverse();
+  const reversed = [...replies].reverse();*/
   return (
     <main>
-      <div>{post ? <Post post={post} /> : null}</div>
-      <form id="postForm" onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="content"
-          value={message}
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-        />
-        <button type="submit">Post</button>
-      </form>
-      <div id="posts">
-        {reversed.map((post, i) => (
-          <Reply key={i} reply={post} short />
-        ))}
-      </div>
+      <div>{reply ? <Reply reply={reply} /> : null}</div>
     </main>
   );
 };

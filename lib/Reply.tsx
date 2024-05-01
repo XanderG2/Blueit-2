@@ -9,12 +9,12 @@ export default function Reply({
   reply: ReplyData;
   short?: boolean;
 }) {
-  /*const { push } = useRouter();
+  const { push } = useRouter();
   const go = () => {
-    push(`/p/${id}`);
-  };*/
+    push(`/reply/${id}`);
+  };
   return (
-    <div className={short ? styles.shortpost : styles.post} /*onClick={go}*/>
+    <div className={short ? styles.shortpost : styles.post} onClick={go}>
       <div className={styles.username}>
         {username}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className={styles.right}>
