@@ -10,7 +10,7 @@ It is now on github
 
 ```
 npm run build
-rsync -av . xander@xvps.thegillams.co.uk:/home/xander/next/ --exclude node_modules --exclude .git
+rsync -av . xander@xvps.thegillams.co.uk:/home/xander/next/ --exclude node_modules --exclude .git --exclude .next/server/pages/store.json
 ssh xander@xvps.thegillams.co.uk
 ```
 
